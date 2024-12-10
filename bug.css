@@ -1,0 +1,29 @@
+The following CSS code snippet demonstrates an issue where the expected behavior does not occur due to a subtle misunderstanding of specificity:
+
+```css
+div {
+  color: blue;
+}
+
+.class-one {
+  color: red;
+}
+
+#id-one {
+  color: green;
+}
+
+#id-one.class-one {
+  color: purple; /* This will override other styles */
+}
+
+div#id-one.class-one {
+  color: yellow; /* This will NOT override the previous style */
+}
+```
+
+The intention might be that the element with all three selectors (`div#id-one.class-one`) will be yellow; however, it's actually purple due to specificity.  The rule `#id-one.class-one` has higher specificity than `div#id-one.class-one` because the former uses only ID and class selectors, making it more specific. 
+
+This happens because of how CSS specificity works.  Selectors with IDs have higher specificity than classes, and classes have higher specificity than element selectors. Combining ID and class selectors results in higher specificity than just using an element and class or element and ID. The order of the selectors in the stylesheet doesn't affect specificity.
+
+This is an uncommon error that arises from a deep understanding of CSS specificity, easily overlooked by junior developers.
