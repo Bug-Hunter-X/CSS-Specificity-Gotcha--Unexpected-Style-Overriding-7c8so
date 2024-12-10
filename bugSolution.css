@@ -1,0 +1,27 @@
+The solution is to be aware of the CSS specificity rules.  You must understand that a combination of id and class selectors will always override class and element selectors. 
+
+Here's the corrected CSS:
+
+```css
+div {
+  color: blue;
+}
+
+.class-one {
+  color: red;
+}
+
+#id-one {
+  color: green;
+}
+
+/* Increased Specificity to override other selectors */
+#id-one.class-one {
+  color: yellow;
+}
+div#id-one.class-one{
+  color:yellow;
+}
+```
+
+By understanding that `#id-one.class-one` is more specific than selectors that only use an element selector, we can write styles that are applied correctly.  We ensure our styles apply in the desired order of precedence.  Always check the specificity of your selectors to avoid unexpected behavior.
